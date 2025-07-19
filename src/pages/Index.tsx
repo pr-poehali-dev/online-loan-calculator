@@ -44,28 +44,16 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
-                <Icon name="DollarSign" size={24} className="text-white" />
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-center">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
+                <Icon name="DollarSign" size={28} className="text-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                ФинансПро
+              <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                Финанс 5
               </span>
             </div>
-            <nav className="flex items-center gap-8">
-              <a href="#calculator" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Калькулятор</a>
-              <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">О компании</a>
-              <a href="#documents" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Документы</a>
-              <a href="#contacts" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Контакты</a>
-            </nav>
-            <Button 
-              onClick={() => setIsFormOpen(true)}
-              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold px-6 py-2"
-            >
-              Подать заявку
-            </Button>
           </div>
         </div>
       </header>
