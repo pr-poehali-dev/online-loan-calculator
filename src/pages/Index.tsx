@@ -54,16 +54,18 @@ export default function Index() {
                 ФинансПро
               </span>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#calculator" className="text-gray-600 hover:text-blue-600 transition-colors">Калькулятор</a>
-              <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors">О компании</a>
-              <a href="#documents" className="text-gray-600 hover:text-blue-600 transition-colors">Документы</a>
-              <a href="#contacts" className="text-gray-600 hover:text-blue-600 transition-colors">Контакты</a>
+            <nav className="flex items-center gap-8">
+              <a href="#calculator" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Калькулятор</a>
+              <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">О компании</a>
+              <a href="#documents" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Документы</a>
+              <a href="#contacts" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">Контакты</a>
             </nav>
-            <div className="flex items-center gap-4">
-              <Icon name="Phone" size={20} className="text-gray-600" />
-              <span className="text-gray-800 font-medium">8 (800) 123-45-67</span>
-            </div>
+            <Button 
+              onClick={() => setIsFormOpen(true)}
+              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold px-6 py-2"
+            >
+              Подать заявку
+            </Button>
           </div>
         </div>
       </header>
