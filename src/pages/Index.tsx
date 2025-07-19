@@ -129,71 +129,106 @@ export default function Index() {
             <p className="text-xl text-gray-600">Рассчитайте сумму и условия займа за несколько секунд</p>
           </div>
 
-          <Card className="relative overflow-hidden border-0 shadow-2xl max-w-8xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50"></div>
-            <CardContent className="relative p-16">
+          <Card className="relative overflow-hidden border-0 shadow-2xl max-w-8xl mx-auto transform hover:scale-[1.02] transition-all duration-700 group">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50 animate-pulse"></div>
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-full blur-3xl animate-bounce"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
+            <CardContent className="relative p-16 backdrop-blur-sm">
               <div className="grid lg:grid-cols-2 gap-24 items-center">
-                <div className="space-y-8">
-                  <div className="space-y-3">
-                    <Label className="text-lg font-semibold text-gray-800">Сумма займа</Label>
-                    <div className="relative">
-                      <Input
-                        type="range"
-                        min="1000"
-                        max="45000"
-                        step="1000"
-                        value={loanAmount}
-                        onChange={(e) => setLoanAmount(Number(e.target.value))}
-                        className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-                      />
-                      <div className="flex justify-between text-sm text-gray-500 mt-2">
-                        <span>1 000 ₽</span>
-                        <span>45 000 ₽</span>
+                <div className="space-y-10">
+                  <div className="space-y-6 p-6 bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl transition-all duration-300">
+                    <Label className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <Icon name="DollarSign" size={20} className="text-white" />
+                      </div>
+                      Сумма займа
+                    </Label>
+                    <div className="relative p-4">
+                      <div className="relative">
+                        <Input
+                          type="range"
+                          min="1000"
+                          max="45000"
+                          step="1000"
+                          value={loanAmount}
+                          onChange={(e) => setLoanAmount(Number(e.target.value))}
+                          className="w-full h-6 bg-gradient-to-r from-blue-200 to-green-200 rounded-full appearance-none cursor-pointer slider-3d shadow-inner"
+                        />
+                        <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-full opacity-20 animate-pulse"></div>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-600 mt-4 font-medium">
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">1 000 ₽</span>
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">45 000 ₽</span>
                       </div>
                     </div>
-                    <div className="text-center">
-                      <span className="text-3xl font-bold text-blue-600">{loanAmount.toLocaleString()} ₽</span>
+                    <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl border-2 border-blue-200/50">
+                      <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent animate-pulse">
+                        {loanAmount.toLocaleString()} ₽
+                      </div>
+                      <div className="text-sm text-gray-600 mt-2 font-medium">Выбранная сумма</div>
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <Label className="text-lg font-semibold text-gray-800">Срок займа (дней)</Label>
-                    <div className="relative">
-                      <Input
-                        type="range"
-                        min="1"
-                        max="30"
-                        value={loanPeriod}
-                        onChange={(e) => setLoanPeriod(Number(e.target.value))}
-                        className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-                      />
-                      <div className="flex justify-between text-sm text-gray-500 mt-2">
-                        <span>1 день</span>
-                        <span>30 дней</span>
+                  <div className="space-y-6 p-6 bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl transition-all duration-300">
+                    <Label className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                        <Icon name="Calendar" size={20} className="text-white" />
+                      </div>
+                      Срок займа
+                    </Label>
+                    <div className="relative p-4">
+                      <div className="relative">
+                        <Input
+                          type="range"
+                          min="1"
+                          max="30"
+                          value={loanPeriod}
+                          onChange={(e) => setLoanPeriod(Number(e.target.value))}
+                          className="w-full h-6 bg-gradient-to-r from-green-200 to-blue-200 rounded-full appearance-none cursor-pointer slider-3d shadow-inner"
+                        />
+                        <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-full opacity-20 animate-pulse"></div>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-600 mt-4 font-medium">
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">1 день</span>
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">30 дней</span>
                       </div>
                     </div>
-                    <div className="text-center">
-                      <span className="text-2xl font-bold text-green-600">{loanPeriod} дней</span>
+                    <div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border-2 border-green-200/50">
+                      <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
+                        {loanPeriod} дней
+                      </div>
+                      <div className="text-sm text-gray-600 mt-2 font-medium">Выбранный срок</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-8">
-                  <Card className="bg-gradient-to-br from-blue-500 to-green-500 text-white border-0">
-                    <CardContent className="p-6">
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <span className="text-blue-100">Сумма займа:</span>
-                          <span className="text-xl font-bold">{loanAmount.toLocaleString()} ₽</span>
+                <div className="space-y-10">
+                  <Card className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-green-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-500 group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-green-400/20 animate-pulse"></div>
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-400 animate-pulse"></div>
+                    <CardContent className="relative p-8 backdrop-blur-sm">
+                      <div className="space-y-6">
+                        <div className="text-center mb-6">
+                          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+                            <Icon name="Calculator" size={32} className="text-white" />
+                          </div>
+                          <h3 className="text-2xl font-bold">Расчет займа</h3>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-blue-100">Проценты:</span>
-                          <span className="text-xl font-bold">{((loanAmount * interestRate * loanPeriod) / 100).toLocaleString()} ₽</span>
-                        </div>
-                        <Separator className="bg-white/20" />
-                        <div className="flex justify-between items-center">
-                          <span className="text-blue-100">К возврату:</span>
-                          <span className="text-2xl font-bold">{totalAmount.toLocaleString()} ₽</span>
+                        
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <span className="text-blue-100 font-medium">Сумма займа:</span>
+                            <span className="text-2xl font-bold">{loanAmount.toLocaleString()} ₽</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <span className="text-blue-100 font-medium">Проценты (1.5%/день):</span>
+                            <span className="text-2xl font-bold text-yellow-300">{((loanAmount * interestRate * loanPeriod) / 100).toLocaleString()} ₽</span>
+                          </div>
+                          <Separator className="bg-white/30 my-4" />
+                          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-xl border border-yellow-300/30">
+                            <span className="text-yellow-100 font-bold text-lg">К возврату:</span>
+                            <span className="text-3xl font-bold text-yellow-300 animate-pulse">{totalAmount.toLocaleString()} ₽</span>
+                          </div>
                         </div>
                       </div>
                     </CardContent>
@@ -201,10 +236,18 @@ export default function Index() {
 
                   <Button 
                     onClick={() => setIsFormOpen(true)}
-                    className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="w-full h-16 text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 hover:from-blue-700 hover:via-purple-700 hover:to-green-700 text-white border-0 rounded-2xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 animate-pulse hover:animate-none relative overflow-hidden group"
                   >
-                    <Icon name="Send" size={20} className="mr-2" />
-                    Подать заявку
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative flex items-center justify-center gap-3">
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                        <Icon name="Zap" size={20} className="text-white" />
+                      </div>
+                      <span>Подать заявку сейчас!</span>
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:-rotate-12 transition-transform duration-300">
+                        <Icon name="ArrowRight" size={20} className="text-white" />
+                      </div>
+                    </div>
                   </Button>
                 </div>
               </div>
@@ -493,23 +536,47 @@ export default function Index() {
       </footer>
 
       <style jsx>{`
-        .slider::-webkit-slider-thumb {
+        .slider-3d::-webkit-slider-thumb {
           appearance: none;
-          height: 20px;
-          width: 20px;
+          height: 32px;
+          width: 32px;
           border-radius: 50%;
-          background: linear-gradient(45deg, #2563eb, #059669);
+          background: linear-gradient(135deg, #3b82f6, #10b981, #8b5cf6);
           cursor: pointer;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(59, 130, 246, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+          border: 3px solid rgba(255, 255, 255, 0.8);
+          transition: all 0.3s ease;
         }
-        .slider::-moz-range-thumb {
-          height: 20px;
-          width: 20px;
+        .slider-3d::-webkit-slider-thumb:hover {
+          transform: scale(1.2) rotate(45deg);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(59, 130, 246, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        .slider-3d::-moz-range-thumb {
+          height: 32px;
+          width: 32px;
           border-radius: 50%;
-          background: linear-gradient(45deg, #2563eb, #059669);
+          background: linear-gradient(135deg, #3b82f6, #10b981, #8b5cf6);
           cursor: pointer;
+          border: 3px solid rgba(255, 255, 255, 0.8);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(59, 130, 246, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+          transition: all 0.3s ease;
+        }
+        .slider-3d::-moz-range-thumb:hover {
+          transform: scale(1.2);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(59, 130, 246, 0.6);
+        }
+        .slider-3d::-webkit-slider-track {
+          height: 24px;
+          border-radius: 12px;
+          background: linear-gradient(90deg, #dbeafe, #d1fae5);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .slider-3d::-moz-range-track {
+          height: 24px;
+          border-radius: 12px;
+          background: linear-gradient(90deg, #dbeafe, #d1fae5);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
           border: none;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
       `}</style>
     </div>
