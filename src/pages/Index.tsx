@@ -133,19 +133,18 @@ export default function Index() {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50 animate-pulse"></div>
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-full blur-3xl animate-bounce"></div>
             <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
-            <CardContent className="relative p-4 md:p-8 backdrop-blur-sm">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-start lg:items-center">
+            <CardContent className="relative p-8 backdrop-blur-sm">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
                   <div className="space-y-6 p-6 bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl transition-all duration-300">
                     <Label className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                      <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                        <Icon name="DollarSign" size={16} className="text-white md:hidden" />
-                        <Icon name="DollarSign" size={20} className="text-white hidden md:block" />
+                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <Icon name="DollarSign" size={20} className="text-white" />
                       </div>
                       Сумма займа
                     </Label>
-                    <div className="relative p-2 md:p-4">
-                      <div className="relative touch-pan-x">
+                    <div className="relative p-4">
+                      <div className="relative">
                         <Input
                           type="range"
                           min="1000"
@@ -153,63 +152,52 @@ export default function Index() {
                           step="1000"
                           value={loanAmount}
                           onChange={(e) => setLoanAmount(Number(e.target.value))}
-                          className="w-full h-8 md:h-6 bg-gradient-to-r from-blue-200 to-green-200 rounded-full appearance-none cursor-pointer slider-3d shadow-inner touch-manipulation"
-                          style={{
-                            WebkitAppearance: 'none',
-                            MozAppearance: 'none',
-                            touchAction: 'pan-x'
-                          }}
+                          className="w-full h-6 bg-gradient-to-r from-blue-200 to-green-200 rounded-full appearance-none cursor-pointer slider-3d shadow-inner"
                         />
                         <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-full opacity-20 animate-pulse"></div>
                       </div>
-                      <div className="flex justify-between text-xs md:text-sm text-gray-600 mt-2 md:mt-4 font-medium">
-                        <span className="bg-white/80 px-2 md:px-3 py-1 rounded-full shadow-sm text-xs md:text-sm">1 000 ₽</span>
-                        <span className="bg-white/80 px-2 md:px-3 py-1 rounded-full shadow-sm text-xs md:text-sm">45 000 ₽</span>
+                      <div className="flex justify-between text-sm text-gray-600 mt-4 font-medium">
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">1 000 ₽</span>
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">45 000 ₽</span>
                       </div>
                     </div>
-                    <div className="text-center p-3 md:p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl border-2 border-blue-200/50">
-                      <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent animate-pulse">
+                    <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl border-2 border-blue-200/50">
+                      <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent animate-pulse">
                         {loanAmount.toLocaleString()} ₽
                       </div>
-                      <div className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2 font-medium">Выбранная сумма</div>
+                      <div className="text-sm text-gray-600 mt-2 font-medium">Выбранная сумма</div>
                     </div>
                   </div>
 
                   <div className="space-y-6 p-6 bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl transition-all duration-300">
-                    <Label className="text-lg md:text-2xl font-bold text-gray-800 flex items-center gap-2">
-                      <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                        <Icon name="Calendar" size={16} className="text-white md:hidden" />
-                        <Icon name="Calendar" size={20} className="text-white hidden md:block" />
+                    <Label className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                        <Icon name="Calendar" size={20} className="text-white" />
                       </div>
                       Срок займа
                     </Label>
-                    <div className="relative p-2 md:p-4">
-                      <div className="relative touch-pan-x">
+                    <div className="relative p-4">
+                      <div className="relative">
                         <Input
                           type="range"
                           min="1"
                           max="30"
                           value={loanPeriod}
                           onChange={(e) => setLoanPeriod(Number(e.target.value))}
-                          className="w-full h-8 md:h-6 bg-gradient-to-r from-green-200 to-blue-200 rounded-full appearance-none cursor-pointer slider-3d shadow-inner touch-manipulation"
-                          style={{
-                            WebkitAppearance: 'none',
-                            MozAppearance: 'none',
-                            touchAction: 'pan-x'
-                          }}
+                          className="w-full h-6 bg-gradient-to-r from-green-200 to-blue-200 rounded-full appearance-none cursor-pointer slider-3d shadow-inner"
                         />
                         <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-full opacity-20 animate-pulse"></div>
                       </div>
-                      <div className="flex justify-between text-xs md:text-sm text-gray-600 mt-2 md:mt-4 font-medium">
-                        <span className="bg-white/80 px-2 md:px-3 py-1 rounded-full shadow-sm text-xs md:text-sm">1 день</span>
-                        <span className="bg-white/80 px-2 md:px-3 py-1 rounded-full shadow-sm text-xs md:text-sm">30 дней</span>
+                      <div className="flex justify-between text-sm text-gray-600 mt-4 font-medium">
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">1 день</span>
+                        <span className="bg-white/80 px-3 py-1 rounded-full shadow-sm">30 дней</span>
                       </div>
                     </div>
-                    <div className="text-center p-3 md:p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border-2 border-green-200/50">
-                      <div className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
+                    <div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border-2 border-green-200/50">
+                      <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
                         {loanPeriod} дней
                       </div>
-                      <div className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2 font-medium">Выбранный срок</div>
+                      <div className="text-sm text-gray-600 mt-2 font-medium">Выбранный срок</div>
                     </div>
                   </div>
                 </div>
@@ -550,24 +538,22 @@ export default function Index() {
       <style jsx>{`
         .slider-3d::-webkit-slider-thumb {
           appearance: none;
-          height: 40px;
-          width: 40px;
+          height: 32px;
+          width: 32px;
           border-radius: 50%;
           background: linear-gradient(135deg, #3b82f6, #10b981, #8b5cf6);
           cursor: pointer;
           box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(59, 130, 246, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
           border: 3px solid rgba(255, 255, 255, 0.8);
           transition: all 0.3s ease;
-          touch-action: manipulation;
         }
-        .slider-3d::-webkit-slider-thumb:hover,
-        .slider-3d::-webkit-slider-thumb:active {
-          transform: scale(1.1);
+        .slider-3d::-webkit-slider-thumb:hover {
+          transform: scale(1.2) rotate(45deg);
           box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(59, 130, 246, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.5);
         }
         .slider-3d::-moz-range-thumb {
-          height: 40px;
-          width: 40px;
+          height: 32px;
+          width: 32px;
           border-radius: 50%;
           background: linear-gradient(135deg, #3b82f6, #10b981, #8b5cf6);
           cursor: pointer;
@@ -575,49 +561,22 @@ export default function Index() {
           box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(59, 130, 246, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
           transition: all 0.3s ease;
         }
-        .slider-3d::-moz-range-thumb:hover,
-        .slider-3d::-moz-range-thumb:active {
-          transform: scale(1.1);
+        .slider-3d::-moz-range-thumb:hover {
+          transform: scale(1.2);
           box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(59, 130, 246, 0.6);
         }
         .slider-3d::-webkit-slider-track {
-          height: 32px;
-          border-radius: 16px;
+          height: 24px;
+          border-radius: 12px;
           background: linear-gradient(90deg, #dbeafe, #d1fae5);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .slider-3d::-moz-range-track {
-          height: 32px;
-          border-radius: 16px;
+          height: 24px;
+          border-radius: 12px;
           background: linear-gradient(90deg, #dbeafe, #d1fae5);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
           border: none;
-        }
-        
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-          .slider-3d::-webkit-slider-thumb {
-            height: 44px;
-            width: 44px;
-          }
-          .slider-3d::-moz-range-thumb {
-            height: 44px;
-            width: 44px;
-          }
-          .slider-3d::-webkit-slider-track {
-            height: 36px;
-            border-radius: 18px;
-          }
-          .slider-3d::-moz-range-track {
-            height: 36px;
-            border-radius: 18px;
-          }
-        }
-        
-        /* Touch target improvements */
-        .slider-3d {
-          touch-action: pan-x;
-          -webkit-tap-highlight-color: transparent;
         }
       `}</style>
     </div>
