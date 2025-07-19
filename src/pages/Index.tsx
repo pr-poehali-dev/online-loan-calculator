@@ -132,8 +132,8 @@ export default function Index() {
           <Card className="relative overflow-hidden border-0 shadow-2xl max-w-8xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50"></div>
             <CardContent className="relative p-16">
-              <div className="grid lg:grid-cols-2 gap-24">
-                <div className="space-y-6">
+              <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <div className="space-y-8">
                   <div className="space-y-3">
                     <Label className="text-lg font-semibold text-gray-800">Сумма займа</Label>
                     <div className="relative">
@@ -178,7 +178,7 @@ export default function Index() {
                   </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <Card className="bg-gradient-to-br from-blue-500 to-green-500 text-white border-0">
                     <CardContent className="p-6">
                       <div className="space-y-4">
