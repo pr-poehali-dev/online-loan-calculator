@@ -134,17 +134,17 @@ export default function Index() {
       </section>
 
       {/* Calculator Section */}
-      <section id="calculator" className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-7xl">
+      <section id="calculator" className="py-32 px-4 bg-white">
+        <div className="container mx-auto max-w-full px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Калькулятор займа</h2>
             <p className="text-xl text-gray-600">Рассчитайте сумму и условия займа за несколько секунд</p>
           </div>
 
-          <Card className="relative overflow-hidden border-0 shadow-2xl">
+          <Card className="relative overflow-hidden border-0 shadow-2xl max-w-8xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50"></div>
-            <CardContent className="relative p-12">
-              <div className="grid lg:grid-cols-2 gap-16">
+            <CardContent className="relative p-16">
+              <div className="grid lg:grid-cols-2 gap-24">
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <Label className="text-lg font-semibold text-gray-800">Сумма займа</Label>
