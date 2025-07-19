@@ -122,20 +122,20 @@ export default function Index() {
       </section>
 
       {/* Calculator Section */}
-      <section id="calculator" className="py-32 px-4 bg-white">
-        <div className="container mx-auto max-w-full px-8">
+      <section id="calculator" className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Калькулятор займа</h2>
             <p className="text-xl text-gray-600">Рассчитайте сумму и условия займа за несколько секунд</p>
           </div>
 
-          <Card className="relative overflow-hidden border-0 shadow-2xl max-w-8xl mx-auto transform hover:scale-[1.02] transition-all duration-700 group">
+          <Card className="relative overflow-hidden border-0 shadow-2xl transform hover:scale-[1.02] transition-all duration-700 group">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50 animate-pulse"></div>
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-full blur-3xl animate-bounce"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
-            <CardContent className="relative p-16 backdrop-blur-sm">
-              <div className="grid lg:grid-cols-2 gap-24 items-center">
-                <div className="space-y-10">
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-full blur-3xl animate-bounce"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
+            <CardContent className="relative p-8 backdrop-blur-sm">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-6">
                   <div className="space-y-6 p-6 bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl transition-all duration-300">
                     <Label className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                       <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
@@ -202,7 +202,7 @@ export default function Index() {
                   </div>
                 </div>
 
-                <div className="space-y-10">
+                <div className="space-y-6">
                   <Card className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-green-600 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-green-400/20 animate-pulse"></div>
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-400 animate-pulse"></div>
