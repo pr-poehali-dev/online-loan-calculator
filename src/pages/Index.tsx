@@ -16,6 +16,73 @@ export default function Index() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [timer, setTimer] = useState(60);
   const [isApproved, setIsApproved] = useState(false);
+  
+  // Форма данных
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    passportSeries: '',
+    passportNumber: '',
+    loanAmount: 15000,
+    loanPeriod: 30
+  });
+  
+  // Функция отправки в Tilda
+  const submitToTilda = async (data: any) => {
+    const TILDA_FORM_ID = 'form12345'; // Замените на ваш ID формы Tilda
+    const TILDA_PUBLIC_KEY = 'your-public-key'; // Замените на ваш публичный ключ
+    
+    try {
+      const response = await fetch('https://forms.tildacdn.com/api/getform/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          formservices: '1',
+          formid: TILDA_FORM_ID,
+          tildaspec: TILDA_PUBLIC_KEY,
+          ...data
+        })
+      });
+      
+      if (response.ok) {
+        console.log('Заявка успешно отправлена в Tilda');
+        return true;
+      } else {
+        console.error('Ошибка отправки в Tilda:', response.status);
+        return false;
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке заявки:', error);
+      return false;
+    }
+  };
+  
+  // Обработчик отправки формы
+  const handleFormSubmit = async () => {
+    const submitData = {
+      'Имя': formData.firstName,
+      'Фамилия': formData.lastName,
+      'Телефон': formData.phone,
+      'Email': formData.email,
+      'Серия паспорта': formData.passportSeries,
+      'Номер паспорта': formData.passportNumber,
+      'Сумма займа': formData.loanAmount,
+      'Срок займа': formData.loanPeriod,
+      'Общая сумма к возврату': totalAmount.toFixed(2)
+    };
+    
+    const success = await submitToTilda(submitData);
+    
+    if (success) {
+      setApplicationStep(2);
+    } else {
+      alert('Произошла ошибка при отправке заявки. Попробуйте еще раз.');
+    }
+  };
 
   const interestRate = 1.5; // 1.5% в день
   const totalAmount = loanAmount + (loanAmount * interestRate * loanPeriod / 100);
@@ -288,30 +355,83 @@ export default function Index() {
             <CardContent className="space-y-6">
               {applicationStep === 1 && (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label>Имя</Label>
-                      <Input placeholder="Введите имя" />
+                      <Input 
+                        placeholder="Введите имя" 
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                      />
                     </div>
                     <div>
                       <Label>Фамилия</Label>
-                      <Input placeholder="Введите фамилию" />
+                      <Input 
+                        placeholder="Введите фамилию"
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                      />
                     </div>
                   </div>
                   <div>
                     <Label>Номер телефона</Label>
-                    <Input placeholder="+7 (999) 123-45-67" />
+                    <Input 
+                      placeholder="+7 (999) 123-45-67"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    />
                   </div>
                   <div>
                     <Label>Email</Label>
-                    <Input type="email" placeholder="example@mail.ru" />
+                    <Input 
+                      type="email" 
+                      placeholder="example@mail.ru"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    />
                   </div>
-                  <div>
-                    <Label>Серия и номер паспорта</Label>
-                    <Input placeholder="1234 567890" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Серия паспорта</Label>
+                      <Input 
+                        placeholder="1234" 
+                        value={formData.passportSeries}
+                        onChange={(e) => setFormData({...formData, passportSeries: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label>Номер паспорта</Label>
+                      <Input 
+                        placeholder="567890" 
+                        value={formData.passportNumber}
+                        onChange={(e) => setFormData({...formData, passportNumber: e.target.value})}
+                      />
+                    </div>
                   </div>
-                  <Button onClick={() => setApplicationStep(2)} className="w-full">
-                    Далее
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h3 className="font-semibold text-sm mb-2">Параметры займа:</h3>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <div className="flex justify-between">
+                        <span>Сумма займа:</span>
+                        <span className="font-medium">{loanAmount.toLocaleString()} ₽</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Срок займа:</span>
+                        <span className="font-medium">{loanPeriod} дней</span>
+                      </div>
+                      <div className="flex justify-between border-t pt-1 mt-2">
+                        <span>К возврату:</span>
+                        <span className="font-bold text-blue-600">{totalAmount.toLocaleString()} ₽</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    onClick={handleFormSubmit} 
+                    className="w-full" 
+                    disabled={!formData.firstName || !formData.lastName || !formData.phone || !formData.email}
+                  >
+                    Отправить заявку в Tilda
                   </Button>
                 </div>
               )}
