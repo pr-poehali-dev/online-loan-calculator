@@ -29,50 +29,68 @@ export default function Index() {
     loanPeriod: 30
   });
   
-  // Функция отправки в Tilda
+  // Функция отправки в Tilda CRM
   const submitToTilda = async (data: any) => {
-    const TILDA_FORM_ID = 'form12345'; // Замените на ваш ID формы Tilda
-    const TILDA_PUBLIC_KEY = 'your-public-key'; // Замените на ваш публичный ключ
+    // Конфигурация Tilda - замените на ваши данные
+    const TILDA_FORM_ID = 'form591843265'; // ID формы из Tilda
+    const TILDA_PROJECT_ID = '1234567'; // ID проекта Tilda
     
     try {
+      // Подготовка данных для отправки в Tilda CRM
+      const formData = new FormData();
+      formData.append('formservices', '1');
+      formData.append('formid', TILDA_FORM_ID);
+      formData.append('projectid', TILDA_PROJECT_ID);
+      formData.append('tilda-success-url', window.location.origin);
+      
+      // Добавляем данные анкеты
+      Object.keys(data).forEach(key => {
+        formData.append(`input[${key}]`, data[key]);
+      });
+      
+      // Дополнительные поля для CRM
+      formData.append('input[Источник]', 'Калькулятор займов');
+      formData.append('input[Дата заявки]', new Date().toLocaleString('ru-RU'));
+      formData.append('input[Процентная ставка]', '1.5% в день');
+      formData.append('input[IP адрес]', 'auto');
+      
       const response = await fetch('https://forms.tildacdn.com/api/getform/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          formservices: '1',
-          formid: TILDA_FORM_ID,
-          tildaspec: TILDA_PUBLIC_KEY,
-          ...data
-        })
+        body: formData
       });
       
       if (response.ok) {
-        console.log('Заявка успешно отправлена в Tilda');
+        const result = await response.text();
+        console.log('Заявка успешно отправлена в Tilda CRM:', result);
+        
+        // Уведомление пользователя
+        alert('✅ Заявка успешно отправлена! Мы свяжемся с вами в течение 15 минут.');
         return true;
       } else {
-        console.error('Ошибка отправки в Tilda:', response.status);
+        console.error('Ошибка отправки в Tilda CRM:', response.status, response.statusText);
         return false;
       }
     } catch (error) {
-      console.error('Ошибка при отправке заявки:', error);
+      console.error('Ошибка при отправке заявки в Tilda:', error);
       return false;
     }
   };
   
-  // Обработчик отправки формы
+  // Обработчик отправки формы в Tilda CRM
   const handleFormSubmit = async () => {
+    // Подготовка данных для CRM
     const submitData = {
-      'Имя': formData.firstName,
-      'Фамилия': formData.lastName,
-      'Телефон': formData.phone,
-      'Email': formData.email,
-      'Серия паспорта': formData.passportSeries,
-      'Номер паспорта': formData.passportNumber,
-      'Сумма займа': formData.loanAmount,
-      'Срок займа': formData.loanPeriod,
-      'Общая сумма к возврату': totalAmount.toFixed(2)
+      'name': `${formData.firstName} ${formData.lastName}`,
+      'phone': formData.phone,
+      'email': formData.email,
+      'passport_series': formData.passportSeries,
+      'passport_number': formData.passportNumber,
+      'loan_amount': `${loanAmount.toLocaleString()} руб`,
+      'loan_period': `${loanPeriod} дней`,
+      'total_amount': `${totalAmount.toLocaleString()} руб`,
+      'interest_rate': `${((loanAmount * interestRate * loanPeriod) / 100).toLocaleString()} руб`,
+      'lead_source': 'Сайт калькулятора займов',
+      'status': 'Новая заявка'
     };
     
     const success = await submitToTilda(submitData);
@@ -80,7 +98,7 @@ export default function Index() {
     if (success) {
       setApplicationStep(2);
     } else {
-      alert('Произошла ошибка при отправке заявки. Попробуйте еще раз.');
+      alert('⚠️ Произошла ошибка при отправке заявки. Проверьте данные и попробуйте еще раз.');
     }
   };
 
